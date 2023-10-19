@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <h2 style="margin-top: 15px;">Daftar Jammer</h2>
+            
+            <a href="/dbloker/add" class="btn btn-primary mb-2" style="margin-top: 30px;">Tambah Jammer</a>
+
+            <% if (msg.length !== 0) { %>
+              <div class="alert alert-success" role="alert">
+                <%= msg %>
+              </div>
+            <% } %>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Lokasi</th>
+                    <th scope="col">IP Address</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (dblokers.length === 0) { %>
+
+                    <tr>
+                      <td colspan="4">
+                        <div class="alert alert-danger fw-bold" role="alert">
+                          Data Jammer masih kosong. 
+                        </div>
+                      </td>
+                    </tr>
+
+                  <% } %>
+
+                  <% dblokers.forEach((dbloker, i) => { i++ %>
+                    <tr>
+                      <th scope="row"><%= i++ %></th>
+                      <td><%= dbloker.nama %></td>
+                      <td><%= dbloker.lokasi %></td>
+                      <td><%= dbloker.ipaddress %></td>
+                      <td>
+                          <a href="/dbloker/<%= dbloker.nama %>" class="btn btn-success badge rounded-pill">
+                              <i class="bi"></i> control
+                          </a>
+                      </td>
+                      
+                    </tr> 
+                  <% }) %>
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+

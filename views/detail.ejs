@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div>
+            <h2 class="text-center">Control <%= dbloker.nama %></h2>
+            <% if (!dbloker) { %>
+                <div class="alert alert-danger fw-bold" role="alert">
+                    Data dbloker tidak ada. <br /> <a href="/dbloker" class="alert-link fw-normal">&laquo; Kembali ke daftar dbloker</a>
+                </div>
+            <% } else { %>
+                <form action="/dbloker/update-control" method="post">
+                    <input type="hidden" id="nama" name="nama" value="<%= dbloker.nama %>">
+                    <input type="hidden" id="lokasi" name="lokasi" value="<%= dbloker.lokasi %>">
+                    <input type="hidden" id="ipaddress" name="ipaddress" value="<%= dbloker.ipaddress %>">
+
+                    <!-- mengambil data tanggal -->
+                    <% const currentDate = new Date(); %>
+                    <input type="hidden" id="tgl_aktif" name="tgl_aktif" value="<%= currentDate %>">
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mb-3 mb-sm-0"><br>
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title"> JAMMER_RC</h5>
+                                <p class="card-text">Status : <%= dbloker.jammer_rc %></p>
+                                <label for="jammer_rc">Control :</label>
+                                <div class="row justify-content-center col-sm-6">
+                                    <select name="jammer_rc" id="jammer_rc">
+                                        <option value="<%= dbloker.jammer_rc %>"><%= dbloker.jammer_rc %></option>
+                                        <% if (dbloker.jammer_rc === "on") { %>
+                                            <option value="off">off</option>
+                                        <% } else { %>
+                                            <option value="on">on</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>                    
+                      <div class="col-sm-6 mb-3 mb-sm-0"><br>
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title"> JAMMER_GPS</h5>
+                            <p class="card-text">Status : <%= dbloker.jammer_gps %></p>
+                            <label for="jammer_gps">Control :</label>
+                            <div class="row justify-content-center col-sm-6">
+                                <select name="jammer_gps" id="jammer_gps">
+                                    <option value="<%= dbloker.jammer_gps %>"><%= dbloker.jammer_gps %></option>
+                                    <% if (dbloker.jammer_gps === "on") { %>
+                                        <option value="off">off</option>
+                                    <% } else { %>
+                                        <option value="on">on</option>
+                                    <% } %>
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>                    
+                    </div>
+                    <div class="text-center">    
+                        <br><br>
+                        <button type="submit" class="btn btn-primary text-center" >Submit</button>
+                    </div>
+                </form>
+
+                <div class="text-center">    
+                    <br><br>
+                    <a href="/dbloker/edit/<%= dbloker.nama %>" class="btn btn-info badge">Ubah</a>
+                    <a href="/dbloker/delete/<%= dbloker.nama %>" class="btn btn-danger badge" 
+                        onclick="return confirm('yakin ingin menghapus ?')">Hapus</a>
+                    <a href="/dbloker" class="card-link d-block mt-3">
+                        &laquo; Kembali ke daftar Jammer</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
