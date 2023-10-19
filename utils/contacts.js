@@ -19,7 +19,6 @@ const initDirectory = async () => {
   }
 };
 
-// Jalankan fungsi initDirectory untuk menginisialisasi direktori secara asynchronous
 initDirectory();
 
 // Ambil semua data di dblokers.json

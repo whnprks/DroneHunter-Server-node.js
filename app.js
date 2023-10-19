@@ -141,18 +141,8 @@ app.get('/dblokers/delete/:nama', asyncMiddleware(async (req, res) => {
     }
   }));
   
-  app.post('/dbloker/update-control', [
-    // body('nama').custom(async (value, { req }) => {
-    //   const duplikat = await cekDuplikat(value);
-  
-    //   if (value == req.body.nama && duplikat) {
-    //     return true;
-    //   } else {
-    //     throw new Error('Gagal update');
-    //   }
-  
-    // }),
-  ], asyncMiddleware(async (req, res) => {
+  app.post('/dbloker/update-control', 
+  asyncMiddleware(async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
